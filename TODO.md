@@ -4,10 +4,9 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 
 ## Current Tasks
 
-- Review v0.1 documentation for accuracy and scope control.
-- Decide whether the first implementation should store Paper Cards as Markdown, JSON, or both.
-- Define the minimum Paper Card schema for v0.2.
-- Define the minimum Evidence Table schema for v0.3.
+- Define the minimum Literature Matrix schema for v0.4.
+- Decide how v0.4 should accept multiple Paper Cards and Evidence Tables.
+- Add small JSON examples for the implemented Paper Card and Evidence Table contracts.
 - Decide which legacy OpenHarness docs should remain visible during the transition.
 - Identify OpenHarness commands and package names that should stay unchanged until a later code migration.
 
@@ -19,14 +18,14 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 - Added architecture documentation for the OpenHarness relationship and research-specific layers.
 - Added research workflow documentation from PDF to weekly report.
 - Added AI coding agent rules for future work.
+- Added the read-only `paper_card_extractor` tool with focused tests.
+- Added fixed-schema Paper Card JSON with empty values for missing fields.
+- Added the read-only `evidence_table_extractor` tool with focused tests.
+- Added page, section, source quote, confidence, trace status, and review status to evidence rows.
+- Added dynamic mock PDF fixtures without committing real research papers.
 
 ## Future Feature Tasks
 
-- Implement PDF ingestion for local files.
-- Generate structured Paper Cards.
-- Add source references to Paper Card fields.
-- Implement Evidence Table extraction and validation.
-- Add confidence, source type, and human review status to evidence rows.
 - Build Literature Matrix generation from multiple Paper Cards.
 - Generate Related Work Drafts only from confirmed evidence.
 - Add Experiment Log creation and update workflows.
@@ -38,16 +37,16 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 
 ## Documentation Tasks
 
-- Add a demo walkthrough after v0.2 lands.
+- Add a runnable v0.3 demo walkthrough.
 - Add example Paper Card and Evidence Table artifacts.
 - Add a contributor guide section specific to research workflows.
 - Add screenshots or terminal recordings after a working demo exists.
 - Mark or archive legacy OpenHarness pages that are confusing for ScholarPilot users.
 
-## Non-Goals for v0.1
+## Current Non-Goals
 
 - Do not rename the Python package.
-- Do not modify `src/openharness`.
-- Do not modify `tests`.
-- Do not modify `ohmo`, `frontend`, or `scripts`.
-- Do not claim PDF, Evidence Table, or writing features are already implemented.
+- Do not replace the OpenHarness Agent Loop, Provider, Multi-Agent, or TUI layers.
+- Do not claim rule-based extraction guarantees semantic accuracy.
+- Do not treat automatically located evidence as human-confirmed evidence.
+- Do not claim Literature Matrix, Related Work, Experiment Log, or Weekly Report features are implemented.

@@ -4,7 +4,7 @@ ScholarPilot is a lab research assistant Agent built as a second-stage developme
 
 The project goal is not to hide its foundation. ScholarPilot reuses the OpenHarness agent runtime, tool system, skill loading, memory, permissions, and multi-agent coordination as its base, then adds research-oriented workflows on top: evidence tracking, paper cards, literature matrices, task logs, and human confirmation points.
 
-> Current status: v0.1 is the positioning and documentation baseline. The repository still contains substantial OpenHarness code and docs history. ScholarPilot-specific product features are planned and will be implemented incrementally.
+> Current status: v0.3. ScholarPilot now includes two read-only OpenHarness tools: `paper_card_extractor` for conservative PDF-to-Paper-Card extraction and `evidence_table_extractor` for page-level source tracing. Both are rule-based MVPs; semantic accuracy and human approval are not assumed.
 
 ## Project Positioning
 
@@ -12,7 +12,7 @@ ScholarPilot turns common research work into an auditable intelligent task chain
 
 - Read and summarize papers without losing source context.
 - Convert PDFs into structured Paper Cards.
-- Extract claims, methods, datasets, metrics, and limitations into Evidence Tables.
+- Trace extracted research fields back to page-level source text in Evidence Tables.
 - Compare multiple papers in a Literature Matrix.
 - Draft related work sections from evidence-backed notes.
 - Record experiments and generate weekly research reports.
@@ -27,17 +27,17 @@ The intended users are:
 
 ## Core Features
 
-Planned ScholarPilot capabilities are organized around research artifacts rather than generic chat:
+ScholarPilot capabilities are organized around research artifacts rather than generic chat:
 
-| Area | Artifact | Purpose |
-| --- | --- | --- |
-| Paper reading | Paper Card | Summarize a single paper with bibliographic metadata, problem, method, results, and limitations. |
-| Evidence tracking | Evidence Table | Link claims and notes back to page numbers, quotes, figures, tables, or user-provided source snippets. |
-| Literature review | Literature Matrix | Compare papers by research question, method, dataset, metric, contribution, weakness, and reusable citation value. |
-| Writing support | Related Work Draft | Generate a first-pass related work section from verified evidence, not from unsupported memory. |
-| Experiment management | Experiment Log | Record setup, hypotheses, parameters, results, failures, and next actions. |
-| Reporting | Weekly Report | Summarize progress, blockers, readings, experiments, and next-week plans. |
-| Governance | Human confirmation | Require explicit user confirmation for uncertain citations, major edits, and task status changes. |
+| Area | Artifact | Status | Purpose |
+| --- | --- | --- | --- |
+| Paper reading | Paper Card | v0.2 MVP | Extract fixed fields from local PDFs without filling missing content. |
+| Evidence tracking | Evidence Table | v0.3 MVP | Trace populated Paper Card fields to PDF pages, sections, and source snippets. |
+| Literature review | Literature Matrix | Planned | Compare papers by research question, method, dataset, metric, contribution, and weakness. |
+| Writing support | Related Work Draft | Planned | Generate a first-pass related work section from verified evidence. |
+| Experiment management | Experiment Log | Planned | Record setup, hypotheses, parameters, results, failures, and next actions. |
+| Reporting | Weekly Report | Planned | Summarize progress, blockers, readings, experiments, and next-week plans. |
+| Governance | Human confirmation | Partial | Evidence rows carry a pending-review state; interactive approval remains planned. |
 
 ## Research Workflow
 
@@ -57,17 +57,15 @@ flowchart TD
 
 The workflow is designed to preserve traceability. A generated summary should be explainable through the intermediate artifacts that produced it.
 
-## MVP Scope
+## Current MVP Scope
 
-The v0.1 MVP is documentation and project framing only:
+The implemented ScholarPilot layer currently covers:
 
-- Define ScholarPilot's product direction.
-- Clearly document the OpenHarness fork relationship.
-- Establish the first research workflow model.
-- Define the roadmap from Paper Card to Weekly Report.
-- Add AI agent working rules for future coding tasks.
+- v0.1: project positioning, architecture, workflow, roadmap, and coding-agent rules.
+- v0.2: local PDF parsing with `pypdf` and fixed-schema Paper Card JSON.
+- v0.3: Evidence Table rows with page number, section, source quote, confidence, trace status, and pending human-review status.
 
-The first implementation milestone after v0.1 will focus on PDF import and Paper Card generation. Until that work lands, users should treat ScholarPilot as an OpenHarness-based fork whose research assistant layer is under active design.
+The extractors use metadata and conservative section-heading rules. They do not call an LLM, guarantee semantic extraction accuracy, inspect figures or tables, or invent values that cannot be found.
 
 ## Based on OpenHarness
 
@@ -96,9 +94,9 @@ See [`ROADMAP.md`](ROADMAP.md) for the full roadmap.
 
 High-level milestones:
 
-- v0.1: project positioning and documentation.
-- v0.2: PDF import and Paper Card.
-- v0.3: Evidence Table with source traceability.
+- v0.1: project positioning and documentation (complete).
+- v0.2: PDF import and Paper Card (MVP complete).
+- v0.3: Evidence Table with source traceability (MVP complete).
 - v0.4: Literature Matrix for multi-paper comparison.
 - v0.5: Related Work Draft generation.
 - v0.6: Experiment Log and Weekly Report.
@@ -130,7 +128,7 @@ Demo quality bar:
 
 ## Development Notes
 
-This repository currently keeps the OpenHarness package name, commands, and runtime layout. Renaming packages, changing CLI commands, or modifying source code is intentionally out of scope for the v0.1 documentation pass.
+This repository currently keeps the OpenHarness package name, commands, Agent Loop, Provider layer, Multi-Agent runtime, and TUI layout. ScholarPilot functionality is being added through the inherited Tool registry rather than by presenting a new framework as original infrastructure.
 
 Future code changes should be small, testable, and explicit about whether they are:
 

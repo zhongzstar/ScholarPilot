@@ -4,6 +4,8 @@ This roadmap defines ScholarPilot as a research assistant Agent built on top of 
 
 ## v0.1: Project Positioning and Documentation
 
+Status: complete.
+
 Goal: make the fork understandable to GitHub visitors, collaborators, and interviewers.
 
 Scope:
@@ -25,15 +27,24 @@ Deliverables:
 
 ## v0.2: PDF Import and Paper Card
 
+Status: MVP complete.
+
 Goal: turn one paper PDF into a structured, reviewable Paper Card.
 
-Planned capabilities:
+Implemented MVP capabilities:
 
-- Accept a local PDF path or paper metadata.
-- Extract title, authors, venue, year, abstract, and sections when available.
-- Generate a Paper Card with problem, method, dataset, experiment setup, key results, limitations, and relevance.
-- Preserve source references such as page number, section name, or extracted text span.
-- Require user confirmation before saving a Paper Card.
+- Accept a local PDF path through the OpenHarness Tool registry.
+- Parse PDF metadata and text locally with `pypdf`.
+- Return fixed JSON fields for title, authors, abstract, research problem, method, dataset, results, limitations, and future work.
+- Return empty values when rule-based extraction cannot locate a field.
+- Expose source path and page count through `ToolResult.metadata`.
+- Avoid Agent Loop, Provider, Multi-Agent, and TUI changes.
+
+Deferred beyond the MVP:
+
+- Venue, year, experiment setup, relevance, and open-question fields.
+- Interactive user confirmation and artifact persistence.
+- Semantic extraction guarantees.
 
 Expected artifact:
 
@@ -41,21 +52,32 @@ Expected artifact:
 
 ## v0.3: Evidence Table Traceability
 
+Status: MVP complete.
+
 Goal: make every important paper note traceable to evidence.
 
-Planned capabilities:
+Implemented MVP capabilities:
 
-- Extract claims, methods, datasets, metrics, findings, and limitations into rows.
-- Attach each row to page references, section names, quotes, figures, or tables.
-- Mark confidence and source quality.
-- Separate direct evidence from model inference.
-- Flag unsupported claims for human review.
+- Accept a local PDF and an optional v0.2 Paper Card.
+- Build Paper Cards automatically when one is not supplied.
+- Trace non-empty research fields to page numbers, section names, and extracted PDF text.
+- Distinguish located direct source text from unverified content.
+- Add confidence, trace status, and pending human-review status to every row.
+- Keep empty Paper Card fields separate from populated fields that cannot be located.
+
+Deferred beyond the MVP:
+
+- Semantic claim and metric decomposition.
+- Figure, table, and coordinate-level evidence references.
+- Model-inference rows and interactive human approval.
 
 Expected artifact:
 
 - `EvidenceTable` with source-backed rows.
 
 ## v0.4: Literature Matrix
+
+Status: planned.
 
 Goal: compare multiple papers in a reusable literature review structure.
 
@@ -73,6 +95,8 @@ Expected artifact:
 
 ## v0.5: Related Work Draft
 
+Status: planned.
+
 Goal: generate an evidence-backed related work draft from the Literature Matrix.
 
 Planned capabilities:
@@ -89,6 +113,8 @@ Expected artifact:
 - `RelatedWorkDraft` with evidence links and revision notes.
 
 ## v0.6: Experiment Log and Weekly Report
+
+Status: planned.
 
 Goal: connect reading, experimentation, and reporting.
 

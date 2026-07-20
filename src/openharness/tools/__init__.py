@@ -12,6 +12,7 @@ from openharness.tools.cron_list_tool import CronListTool
 from openharness.tools.cron_toggle_tool import CronToggleTool
 from openharness.tools.enter_plan_mode_tool import EnterPlanModeTool
 from openharness.tools.enter_worktree_tool import EnterWorktreeTool
+from openharness.tools.evidence_table_extractor_tool import EvidenceTableExtractor
 from openharness.tools.exit_plan_mode_tool import ExitPlanModeTool
 from openharness.tools.exit_worktree_tool import ExitWorktreeTool
 from openharness.tools.file_edit_tool import FileEditTool
@@ -57,6 +58,7 @@ def create_default_tool_registry(mcp_manager=None) -> ToolRegistry:
         FileEditTool(),
         NotebookEditTool(),
         PaperCardExtractor(),
+        EvidenceTableExtractor(),
         LspTool(),
         McpAuthTool(),
         GlobTool(),

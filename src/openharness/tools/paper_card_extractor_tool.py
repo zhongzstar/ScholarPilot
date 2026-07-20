@@ -45,6 +45,7 @@ _SECTION_ALIASES: dict[str, str] = {
     "method": "method",
     "methods": "method",
     "methodology": "method",
+    "materials and methods": "method",
     "approach": "method",
     "proposed method": "method",
     "model": "method",
@@ -57,13 +58,16 @@ _SECTION_ALIASES: dict[str, str] = {
     "experiments": "results",
     "experiment": "results",
     "evaluation": "results",
+    "experimental evaluation": "results",
     "results": "results",
     "experimental results": "results",
+    "results and discussion": "results",
     "limitations": "limitations",
     "limitation": "limitations",
     "future work": "future_work",
     "future directions": "future_work",
     "conclusion and future work": "future_work",
+    "conclusions and future work": "future_work",
 }
 
 _SECTION_OUTPUT_KEYS = {
@@ -145,6 +149,11 @@ def _display_path(path: Path, cwd: Path) -> str:
 
 
 def _read_pdf(path: Path) -> tuple[str, dict[str, str], int]:
+    page_texts, metadata = _read_pdf_pages(path)
+    return "\f".join(page_texts), metadata, len(page_texts)
+
+
+def _read_pdf_pages(path: Path) -> tuple[list[str], dict[str, str]]:
     try:
         from pypdf import PdfReader
     except ImportError as exc:
@@ -155,7 +164,9 @@ def _read_pdf(path: Path) -> tuple[str, dict[str, str], int]:
         try:
             reader.decrypt("")
         except Exception as exc:
-            raise RuntimeError("encrypted PDFs are not supported unless they can be opened without a password") from exc
+            raise RuntimeError(
+                "encrypted PDFs are not supported unless they can be opened without a password"
+            ) from exc
 
     metadata = _normalize_metadata(getattr(reader, "metadata", None))
     pages = list(reader.pages)
@@ -165,7 +176,7 @@ def _read_pdf(path: Path) -> tuple[str, dict[str, str], int]:
             page_texts.append(page.extract_text() or "")
         except Exception:
             page_texts.append("")
-    return "\n".join(page_texts), metadata, len(pages)
+    return page_texts, metadata
 
 
 def _normalize_metadata(raw_metadata: Any) -> dict[str, str]:
@@ -337,12 +348,7 @@ def _match_section_heading(line: str) -> str | None:
     candidate = re.sub(r"\s+", " ", candidate)
     if not candidate or len(candidate.split()) > 8:
         return None
-    if candidate in _SECTION_ALIASES:
-        return _SECTION_ALIASES[candidate]
-    for alias, canonical in _SECTION_ALIASES.items():
-        if candidate.startswith(alias + " "):
-            return canonical
-    return None
+    return _SECTION_ALIASES.get(candidate)
 
 
 def _first_available_section(sections: dict[str, str], keys: tuple[str, ...]) -> str:

@@ -73,12 +73,13 @@ For research workflows, the loop should favor traceability over speed. A shorter
 
 OpenHarness already provides tool calling, validation, permissions, and execution results. ScholarPilot should add research tools only when the generic tools are not enough.
 
+Implemented research tools:
+
+- `paper_card_extractor`: parses local PDFs and returns a fixed Paper Card JSON object.
+- `evidence_table_extractor`: maps populated Paper Card fields back to extracted page text.
+
 Expected future research tools:
 
-- PDF text extraction.
-- Metadata extraction.
-- Paper Card writer.
-- Evidence Table writer.
 - Literature Matrix builder.
 - Experiment Log updater.
 - Weekly Report generator.
@@ -115,6 +116,8 @@ An evidence row should track:
 - Human review status.
 
 Evidence rows should feed later artifacts. Related Work Drafts should cite or reference only confirmed evidence unless explicitly marked as tentative.
+
+The v0.3 MVP records page number, normalized section, extracted source quote, match confidence, trace status, and `pending_human_review`. It does not yet identify figure or table coordinates, split sections into semantic claims, or mark evidence as human-confirmed.
 
 ## Task Log
 

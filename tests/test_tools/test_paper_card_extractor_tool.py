@@ -102,7 +102,7 @@ def test_section_heading_rules_extract_known_sections_without_fabricating() -> N
     3 Datasets
     The evaluation uses a mock PDF fixture.
     4 Results
-    The tool returns a fixed JSON object.
+    Results show that the tool returns a fixed JSON object.
     5 Limitations
     Rule-based extraction cannot guarantee semantic accuracy.
     6 Future Work
@@ -117,7 +117,7 @@ def test_section_heading_rules_extract_known_sections_without_fabricating() -> N
     assert "preserve source context" in paper_card["research_problem"]
     assert "conservative section-heading rules" in paper_card["method"]
     assert "mock PDF fixture" in paper_card["dataset"]
-    assert paper_card["results"] == "The tool returns a fixed JSON object."
+    assert paper_card["results"] == "Results show that the tool returns a fixed JSON object."
     assert paper_card["limitations"] == "Rule-based extraction cannot guarantee semantic accuracy."
     assert paper_card["future_work"] == "Future versions should add evidence tables."
 

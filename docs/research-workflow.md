@@ -4,6 +4,8 @@ This document describes the target research workflow for ScholarPilot. The workf
 
 ## 1. PDF -> Paper Card
 
+Implementation status: v0.2 MVP is available through `paper_card_extractor`. It extracts a fixed JSON schema with local rules and leaves unavailable fields empty. Venue, year, persistence, and interactive confirmation remain planned.
+
 Input:
 
 - Local PDF file.
@@ -38,6 +40,8 @@ Output:
 
 ## 2. Paper Card -> Evidence Table
 
+Implementation status: v0.3 MVP is available through `evidence_table_extractor`. It accepts a PDF path plus an optional Paper Card. When no Paper Card is supplied, it invokes the same conservative extraction rules used by v0.2.
+
 Input:
 
 - One Paper Card.
@@ -67,6 +71,22 @@ Evidence Table columns:
 Output:
 
 - A source-backed Evidence Table.
+
+Current v0.3 JSON rows contain:
+
+- Evidence ID and Paper Card field name.
+- Extracted field content.
+- Evidence type: direct source text or unverified.
+- One-based PDF page number and normalized section name when located.
+- A bounded source quote from extracted PDF text.
+- Rule-match confidence and trace status.
+- `pending_human_review` status; the tool does not approve its own evidence.
+
+Current limitations:
+
+- The tool traces Paper Card fields; it does not yet decompose prose into semantic claims or metrics.
+- It does not extract figure, table, or page-coordinate references.
+- PDF text extraction quality depends on `pypdf` and the PDF's embedded text layer.
 
 ## 3. Multiple Papers -> Literature Matrix
 

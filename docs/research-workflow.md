@@ -125,6 +125,8 @@ Output:
 
 ## 4. Literature Matrix -> Related Work Draft
 
+Implementation status: v0.5 MVP is available through `related_work_draft_builder`. The caller must provide explicit `paper_id:evidence_id` approvals. Unknown, unlocated, rejected, and unapproved evidence is excluded. Output is deterministic Chinese or English template prose, not LLM-generated synthesis, and remains marked for final human review.
+
 Input:
 
 - Literature Matrix.

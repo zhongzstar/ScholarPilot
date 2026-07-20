@@ -187,6 +187,24 @@ class LiteratureMatrixPayload(BaseModel):
     rows: list[LiteratureMatrixRowPayload] = Field(min_length=2)
     comparison: MatrixComparisonPayload
 
+    @model_validator(mode="after")
+    def validate_matrix_contract(self) -> LiteratureMatrixPayload:
+        if not self.dimensions or len(self.dimensions) != len(set(self.dimensions)):
+            raise ValueError("Literature Matrix dimensions must be non-empty and unique")
+        paper_ids = [row.paper_id for row in self.rows]
+        if len(paper_ids) != len(set(paper_ids)):
+            raise ValueError("Literature Matrix paper_id values must be unique")
+        expected_dimensions = set(self.dimensions)
+        for row in self.rows:
+            if set(row.cells) != expected_dimensions:
+                raise ValueError("Each Literature Matrix row must contain every selected dimension")
+            evidence_ids = [
+                evidence_id for cell in row.cells.values() for evidence_id in cell.evidence_ids
+            ]
+            if len(evidence_ids) != len(set(evidence_ids)):
+                raise ValueError("Evidence IDs must be unique within each Literature Matrix row")
+        return self
+
 
 class LiteratureMatrixBuilderInput(BaseModel):
     """Arguments for aligning multiple Evidence Tables."""

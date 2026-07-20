@@ -30,6 +30,7 @@ from openharness.tools.mcp_tool import McpToolAdapter
 from openharness.tools.notebook_edit_tool import NotebookEditTool
 from openharness.tools.paper_card_extractor_tool import PaperCardExtractor
 from openharness.tools.read_mcp_resource_tool import ReadMcpResourceTool
+from openharness.tools.related_work_draft_builder_tool import RelatedWorkDraftBuilder
 from openharness.tools.remote_trigger_tool import RemoteTriggerTool
 from openharness.tools.send_message_tool import SendMessageTool
 from openharness.tools.skill_tool import SkillTool
@@ -61,6 +62,7 @@ def create_default_tool_registry(mcp_manager=None) -> ToolRegistry:
         PaperCardExtractor(),
         EvidenceTableExtractor(),
         LiteratureMatrixBuilder(),
+        RelatedWorkDraftBuilder(),
         LspTool(),
         McpAuthTool(),
         GlobTool(),

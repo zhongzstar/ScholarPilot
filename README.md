@@ -4,7 +4,7 @@ ScholarPilot is a lab research assistant Agent built as a second-stage developme
 
 The project goal is not to hide its foundation. ScholarPilot reuses the OpenHarness agent runtime, tool system, skill loading, memory, permissions, and multi-agent coordination as its base, then adds research-oriented workflows on top: evidence tracking, paper cards, literature matrices, task logs, and human confirmation points.
 
-> Current status: v0.4. ScholarPilot now includes read-only OpenHarness tools for Paper Card extraction, Evidence Table tracing, and Literature Matrix construction. The current comparison layer aligns structured fields, reports exact matches and evidence gaps, and does not claim semantic similarity.
+> Current status: v0.5. ScholarPilot now supports the traceable chain from local PDF to Paper Card, Evidence Table, Literature Matrix, and a template-based Related Work Draft. Drafting uses only explicitly approved, source-located evidence and still requires final human review.
 
 ## Project Positioning
 
@@ -34,7 +34,7 @@ ScholarPilot capabilities are organized around research artifacts rather than ge
 | Paper reading | Paper Card | v0.2 MVP | Extract fixed fields from local PDFs without filling missing content. |
 | Evidence tracking | Evidence Table | v0.3 MVP | Trace populated Paper Card fields to PDF pages, sections, and source snippets. |
 | Literature review | Literature Matrix | v0.4 MVP | Align multiple Evidence Tables and report coverage, exact matches, and evidence gaps. |
-| Writing support | Related Work Draft | Planned | Generate a first-pass related work section from verified evidence. |
+| Writing support | Related Work Draft | v0.5 MVP | Build Chinese or English template prose from explicitly approved evidence references. |
 | Experiment management | Experiment Log | Planned | Record setup, hypotheses, parameters, results, failures, and next actions. |
 | Reporting | Weekly Report | Planned | Summarize progress, blockers, readings, experiments, and next-week plans. |
 | Governance | Human confirmation | Partial | Evidence rows carry a pending-review state; interactive approval remains planned. |
@@ -65,6 +65,7 @@ The implemented ScholarPilot layer currently covers:
 - v0.2: local PDF parsing with `pypdf` and fixed-schema Paper Card JSON.
 - v0.3: Evidence Table rows with page number, section, source quote, confidence, trace status, and pending human-review status.
 - v0.4: Literature Matrix alignment across multiple Evidence Tables with mechanical comparison summaries.
+- v0.5: Related Work Draft sections generated only from approved, source-located matrix evidence.
 
 The extractors use metadata and conservative section-heading rules. They do not call an LLM, guarantee semantic extraction accuracy, inspect figures or tables, or invent values that cannot be found.
 
@@ -99,7 +100,7 @@ High-level milestones:
 - v0.2: PDF import and Paper Card (MVP complete).
 - v0.3: Evidence Table with source traceability (MVP complete).
 - v0.4: Literature Matrix for multi-paper comparison (MVP complete).
-- v0.5: Related Work Draft generation.
+- v0.5: Related Work Draft generation (MVP complete).
 - v0.6: Experiment Log and Weekly Report.
 
 ## Demo Plan

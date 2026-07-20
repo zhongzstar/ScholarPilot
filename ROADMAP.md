@@ -102,18 +102,24 @@ Expected artifact:
 
 ## v0.5: Related Work Draft
 
-Status: planned.
+Status: MVP complete.
 
 Goal: generate an evidence-backed related work draft from the Literature Matrix.
 
-Planned capabilities:
+Implemented MVP capabilities:
 
-- Produce a structured related work outline.
-- Draft paragraphs grouped by research thread.
-- Cite only papers present in the matrix.
-- Keep claims linked to evidence rows.
-- Mark weak or missing evidence instead of fabricating support.
-- Ask for human confirmation before finalizing citation-sensitive text.
+- Accept a strict v0.4 Literature Matrix and explicit approved evidence references.
+- Reject unknown, unlocated, or rejected evidence before drafting.
+- Produce field-based Chinese or English sections for problems, methods, data, results, limitations, and future work.
+- Cite only papers and evidence IDs present in the supplied matrix.
+- Exclude unapproved evidence and report missing or untraced matrix fields as warnings.
+- Mark every output as a draft requiring final human review.
+
+Deferred beyond the MVP:
+
+- LLM-assisted thematic synthesis and fluent paragraph transitions.
+- Citation-style rendering and bibliography manager integration.
+- Interactive approval UI and persistent revision history.
 
 Expected artifact:
 

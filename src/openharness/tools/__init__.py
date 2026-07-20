@@ -23,6 +23,7 @@ from openharness.tools.grep_tool import GrepTool
 from openharness.tools.image_generation_tool import ImageGenerationTool
 from openharness.tools.image_to_text_tool import ImageToTextTool
 from openharness.tools.list_mcp_resources_tool import ListMcpResourcesTool
+from openharness.tools.literature_matrix_builder_tool import LiteratureMatrixBuilder
 from openharness.tools.lsp_tool import LspTool
 from openharness.tools.mcp_auth_tool import McpAuthTool
 from openharness.tools.mcp_tool import McpToolAdapter
@@ -59,6 +60,7 @@ def create_default_tool_registry(mcp_manager=None) -> ToolRegistry:
         NotebookEditTool(),
         PaperCardExtractor(),
         EvidenceTableExtractor(),
+        LiteratureMatrixBuilder(),
         LspTool(),
         McpAuthTool(),
         GlobTool(),

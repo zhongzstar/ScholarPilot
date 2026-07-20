@@ -4,8 +4,8 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 
 ## Current Tasks
 
-- Define the minimum Literature Matrix schema for v0.4.
-- Decide how v0.4 should accept multiple Paper Cards and Evidence Tables.
+- Define the minimum Related Work Draft schema for v0.5.
+- Define an explicit approved-evidence input contract for citation-sensitive drafting.
 - Add small JSON examples for the implemented Paper Card and Evidence Table contracts.
 - Decide which legacy OpenHarness docs should remain visible during the transition.
 - Identify OpenHarness commands and package names that should stay unchanged until a later code migration.
@@ -23,10 +23,11 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 - Added the read-only `evidence_table_extractor` tool with focused tests.
 - Added page, section, source quote, confidence, trace status, and review status to evidence rows.
 - Added dynamic mock PDF fixtures without committing real research papers.
+- Added the read-only `literature_matrix_builder` tool with strict Evidence Table inputs.
+- Added deterministic matrix rows, field coverage, exact-match detection, and evidence gaps.
 
 ## Future Feature Tasks
 
-- Build Literature Matrix generation from multiple Paper Cards.
 - Generate Related Work Drafts only from confirmed evidence.
 - Add Experiment Log creation and update workflows.
 - Generate Weekly Reports from task logs and experiment logs.

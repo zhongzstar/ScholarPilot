@@ -77,17 +77,24 @@ Expected artifact:
 
 ## v0.4: Literature Matrix
 
-Status: planned.
+Status: MVP complete.
 
 Goal: compare multiple papers in a reusable literature review structure.
 
-Planned capabilities:
+Implemented MVP capabilities:
 
-- Merge multiple Paper Cards and Evidence Tables.
-- Compare research questions, methods, datasets, metrics, assumptions, strengths, and weaknesses.
-- Group papers by topic, method, task, or contribution type.
-- Identify agreement, disagreement, gaps, and reusable citation roles.
-- Export matrix rows for writing or lab discussion.
+- Accept at least two strict v0.3 Evidence Table JSON objects.
+- Align papers across research problem, method, dataset, results, limitations, and future work.
+- Preserve paper identity, source path, and evidence IDs in each matrix row.
+- Report field coverage, unverified cells, missing cells, and per-paper evidence gaps.
+- Detect exact normalized values shared by multiple papers.
+- Support a caller-selected subset and ordering of comparison dimensions.
+
+Deferred beyond the MVP:
+
+- Semantic similarity, contradiction, and contribution analysis.
+- Topic, method-family, and citation-role grouping.
+- Metric normalization and cross-paper numerical comparison.
 
 Expected artifact:
 

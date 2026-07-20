@@ -90,6 +90,8 @@ Current limitations:
 
 ## 3. Multiple Papers -> Literature Matrix
 
+Implementation status: v0.4 MVP is available through `literature_matrix_builder`. It accepts at least two strict Evidence Table objects, aligns selected fields, and reports exact normalized matches and evidence gaps. It does not infer semantic agreement, disagreement, or topic clusters.
+
 Input:
 
 - Multiple Paper Cards.

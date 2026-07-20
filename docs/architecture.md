@@ -77,10 +77,10 @@ Implemented research tools:
 
 - `paper_card_extractor`: parses local PDFs and returns a fixed Paper Card JSON object.
 - `evidence_table_extractor`: maps populated Paper Card fields back to extracted page text.
+- `literature_matrix_builder`: aligns multiple Evidence Tables without semantic inference.
 
 Expected future research tools:
 
-- Literature Matrix builder.
 - Experiment Log updater.
 - Weekly Report generator.
 

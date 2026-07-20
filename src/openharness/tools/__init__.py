@@ -13,6 +13,7 @@ from openharness.tools.cron_toggle_tool import CronToggleTool
 from openharness.tools.enter_plan_mode_tool import EnterPlanModeTool
 from openharness.tools.enter_worktree_tool import EnterWorktreeTool
 from openharness.tools.evidence_table_extractor_tool import EvidenceTableExtractor
+from openharness.tools.experiment_log_builder_tool import ExperimentLogBuilder
 from openharness.tools.exit_plan_mode_tool import ExitPlanModeTool
 from openharness.tools.exit_worktree_tool import ExitWorktreeTool
 from openharness.tools.file_edit_tool import FileEditTool
@@ -47,6 +48,7 @@ from openharness.tools.todo_write_tool import TodoWriteTool
 from openharness.tools.tool_search_tool import ToolSearchTool
 from openharness.tools.web_fetch_tool import WebFetchTool
 from openharness.tools.web_search_tool import WebSearchTool
+from openharness.tools.weekly_report_builder_tool import WeeklyReportBuilder
 
 
 def create_default_tool_registry(mcp_manager=None) -> ToolRegistry:
@@ -63,6 +65,8 @@ def create_default_tool_registry(mcp_manager=None) -> ToolRegistry:
         EvidenceTableExtractor(),
         LiteratureMatrixBuilder(),
         RelatedWorkDraftBuilder(),
+        ExperimentLogBuilder(),
+        WeeklyReportBuilder(),
         LspTool(),
         McpAuthTool(),
         GlobTool(),

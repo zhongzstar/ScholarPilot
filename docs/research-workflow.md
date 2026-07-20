@@ -155,6 +155,8 @@ Output:
 
 ## 5. Experiment Log -> Weekly Report
 
+Implementation status: v0.6 MVP is available through `experiment_log_builder` and `weekly_report_builder`. Experiment Logs receive deterministic IDs, preserve paper and evidence references, and validate outcome requirements by status. Weekly Reports aggregate only supplied records into strict JSON and Chinese or English Markdown. Persistence, automatic task-log ingestion, scheduling, and LLM-written narrative summaries remain deferred.
+
 Input:
 
 - Experiment notes.

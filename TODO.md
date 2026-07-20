@@ -4,9 +4,9 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 
 ## Current Tasks
 
-- Define the minimum Experiment Log schema for v0.6.
-- Define deterministic Weekly Report aggregation rules for v0.6.
-- Add small JSON examples for the implemented Paper Card and Evidence Table contracts.
+- Build a runnable end-to-end v0.6 demo with synthetic or redistributable fixtures.
+- Decide how research artifacts should be persisted without changing their JSON contracts.
+- Add small JSON examples for all implemented artifact contracts.
 - Decide which legacy OpenHarness docs should remain visible during the transition.
 - Identify OpenHarness commands and package names that should stay unchanged until a later code migration.
 
@@ -27,11 +27,16 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 - Added deterministic matrix rows, field coverage, exact-match detection, and evidence gaps.
 - Added the read-only `related_work_draft_builder` tool.
 - Added explicit evidence approval, source-location checks, and Chinese or English draft output.
+- Added the read-only `experiment_log_builder` with deterministic IDs and linked research references.
+- Added status validation for completed, failed, and blocked experiments.
+- Added the read-only `weekly_report_builder` with strict JSON and Markdown output.
+- Added deterministic aggregation for readings, experiments, task updates, blockers, decisions, and plans.
+- Completed the planned v0.1 through v0.6 MVP artifact chain.
 
 ## Future Feature Tasks
 
-- Add Experiment Log creation and update workflows.
-- Generate Weekly Reports from task logs and experiment logs.
+- Add persistent artifact storage and explicit update workflows.
+- Integrate Weekly Reports with inherited OpenHarness task and session logs.
 - Add demo fixtures for a small set of public papers.
 - Add tests for artifact schema validation.
 - Add export paths for Markdown and JSON artifacts.
@@ -51,4 +56,4 @@ This file tracks documentation and product tasks for the ScholarPilot fork. It i
 - Do not replace the OpenHarness Agent Loop, Provider, Multi-Agent, or TUI layers.
 - Do not claim rule-based extraction guarantees semantic accuracy.
 - Do not treat automatically located evidence as human-confirmed evidence.
-- Do not claim Literature Matrix, Related Work, Experiment Log, or Weekly Report features are implemented.
+- Do not claim the MVP tools provide semantic understanding, persistent storage, scheduled execution, or a finished interactive product.

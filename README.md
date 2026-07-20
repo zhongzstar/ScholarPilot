@@ -4,13 +4,13 @@ ScholarPilot is a lab research assistant Agent built as a second-stage developme
 
 The project goal is not to hide its foundation. ScholarPilot reuses the OpenHarness agent runtime, tool system, skill loading, memory, permissions, and multi-agent coordination as its base, then adds research-oriented workflows on top: evidence tracking, paper cards, literature matrices, task logs, and human confirmation points.
 
-> Current status: v0.5. ScholarPilot now supports the traceable chain from local PDF to Paper Card, Evidence Table, Literature Matrix, and a template-based Related Work Draft. Drafting uses only explicitly approved, source-located evidence and still requires final human review.
+> Current status: v0.6 MVP. ScholarPilot now supports the roadmap artifact chain from local PDF through Paper Card, Evidence Table, Literature Matrix, and a template-based Related Work Draft, plus structured Experiment Logs and Weekly Reports. The implementation remains a conservative OpenHarness extension: no semantic guarantees, automatic citation approval, or hidden LLM inference.
 
 ## Project Positioning
 
 ScholarPilot turns common research work into an auditable intelligent task chain:
 
-- Read and summarize papers without losing source context.
+- Extract paper structure without losing source context.
 - Convert PDFs into structured Paper Cards.
 - Trace extracted research fields back to page-level source text in Evidence Tables.
 - Compare multiple papers in a Literature Matrix.
@@ -35,8 +35,8 @@ ScholarPilot capabilities are organized around research artifacts rather than ge
 | Evidence tracking | Evidence Table | v0.3 MVP | Trace populated Paper Card fields to PDF pages, sections, and source snippets. |
 | Literature review | Literature Matrix | v0.4 MVP | Align multiple Evidence Tables and report coverage, exact matches, and evidence gaps. |
 | Writing support | Related Work Draft | v0.5 MVP | Build Chinese or English template prose from explicitly approved evidence references. |
-| Experiment management | Experiment Log | Planned | Record setup, hypotheses, parameters, results, failures, and next actions. |
-| Reporting | Weekly Report | Planned | Summarize progress, blockers, readings, experiments, and next-week plans. |
+| Experiment management | Experiment Log | v0.6 MVP | Normalize hypotheses, environments, parameters, commands, outcomes, links, and next actions. |
+| Reporting | Weekly Report | v0.6 MVP | Aggregate readings, experiments, tasks, blockers, decisions, and plans into JSON and Markdown. |
 | Governance | Human confirmation | Partial | Evidence rows carry a pending-review state; interactive approval remains planned. |
 
 ## Research Workflow
@@ -66,8 +66,9 @@ The implemented ScholarPilot layer currently covers:
 - v0.3: Evidence Table rows with page number, section, source quote, confidence, trace status, and pending human-review status.
 - v0.4: Literature Matrix alignment across multiple Evidence Tables with mechanical comparison summaries.
 - v0.5: Related Work Draft sections generated only from approved, source-located matrix evidence.
+- v0.6: deterministic Experiment Log and Weekly Report artifacts with Chinese and English output.
 
-The extractors use metadata and conservative section-heading rules. They do not call an LLM, guarantee semantic extraction accuracy, inspect figures or tables, or invent values that cannot be found.
+The current tools use metadata, conservative section rules, strict schemas, and deterministic templates. They do not call an LLM, guarantee semantic accuracy, inspect figures or tables, or invent values that cannot be found.
 
 ## Based on OpenHarness
 
@@ -80,7 +81,7 @@ ScholarPilot is a derivative project based on OpenHarness. OpenHarness provides 
 - Multi-agent and background task coordination.
 - CLI/TUI runtime infrastructure.
 
-ScholarPilot will build research-specific behavior on top of those primitives. It should not present itself as a from-scratch agent framework.
+ScholarPilot builds research-specific behavior on top of those primitives. It should not present itself as a from-scratch agent framework.
 
 Important retained files and directories:
 
@@ -101,7 +102,7 @@ High-level milestones:
 - v0.3: Evidence Table with source traceability (MVP complete).
 - v0.4: Literature Matrix for multi-paper comparison (MVP complete).
 - v0.5: Related Work Draft generation (MVP complete).
-- v0.6: Experiment Log and Weekly Report.
+- v0.6: Experiment Log and Weekly Report (MVP complete).
 
 ## Demo Plan
 
@@ -109,7 +110,7 @@ The first public demo should be small and reproducible:
 
 1. Import one research paper PDF.
 2. Generate a Paper Card with metadata, problem, method, results, and limitations.
-3. Extract 5 to 10 evidence rows with page references.
+3. Extract up to 7 structured evidence rows with page references.
 4. Add two more papers and build a Literature Matrix.
 5. Generate a short related work draft from the matrix.
 6. Record one experiment note and produce a weekly report snippet.
@@ -117,7 +118,7 @@ The first public demo should be small and reproducible:
 Demo quality bar:
 
 - Every claim should link back to an evidence row or user-provided note.
-- The demo should show human confirmation before producing citation-sensitive text.
+- The demo should show explicit evidence approval input before producing citation-sensitive text.
 - The output should be easy for a reviewer or interviewer to inspect in under five minutes.
 
 ## Documentation

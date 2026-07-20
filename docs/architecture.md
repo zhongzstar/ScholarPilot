@@ -79,11 +79,13 @@ Implemented research tools:
 - `evidence_table_extractor`: maps populated Paper Card fields back to extracted page text.
 - `literature_matrix_builder`: aligns multiple Evidence Tables without semantic inference.
 - `related_work_draft_builder`: drafts only from explicitly approved, source-located matrix evidence.
+- `experiment_log_builder`: normalizes user-supplied experiment records and research links.
+- `weekly_report_builder`: aggregates supplied research records into strict JSON and Markdown.
 
 Expected future research tools:
 
-- Experiment Log updater.
-- Weekly Report generator.
+- Persistent artifact writer and updater.
+- OpenHarness task-log adapter.
 
 Every research tool should return structured output that can be reviewed, saved, and reused.
 

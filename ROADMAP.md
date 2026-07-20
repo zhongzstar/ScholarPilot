@@ -127,17 +127,26 @@ Expected artifact:
 
 ## v0.6: Experiment Log and Weekly Report
 
-Status: planned.
+Status: MVP complete.
 
 Goal: connect reading, experimentation, and reporting.
 
-Planned capabilities:
+Implemented MVP capabilities:
 
-- Record experiment hypothesis, environment, parameters, commands, results, failures, and follow-up actions.
-- Link experiments to papers, claims, or open research questions.
-- Generate weekly summaries of readings, experiments, blockers, decisions, and next steps.
-- Keep task logs auditable across sessions.
-- Support lab meeting preparation from accumulated logs.
+- Build strict Experiment Log JSON from user-supplied hypothesis, environment, parameters, commands, outcomes, failures, and next actions.
+- Generate deterministic experiment IDs when the caller does not provide one.
+- Preserve paper IDs and evidence references beside experiments.
+- Validate completed, failed, and blocked experiment records without inventing missing outcomes.
+- Aggregate paper readings, Experiment Logs, task updates, blockers, decisions, and plans into a Weekly Report.
+- Return both strict Weekly Report JSON and deterministic Chinese or English Markdown.
+- Validate reporting periods, experiment dates, duplicate IDs, and structured status counts.
+
+Deferred beyond the MVP:
+
+- Persistent Experiment Log creation and in-place updates.
+- Automatic ingestion from OpenHarness task/session logs.
+- Scheduled report generation and delivery.
+- LLM-assisted narrative synthesis of experiment results.
 
 Expected artifacts:
 
